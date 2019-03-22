@@ -44,4 +44,9 @@ public class Node {
     public void setReferenceToNextNode( Node referenceToNextNode) {
         this.referenceToNextNode = referenceToNextNode;
     }
+
+    public static int findLength(Node headNode) {
+        if (headNode.referenceToNextNode == null) return 0;
+        else return 1 + findLength(headNode.referenceToNextNode);
+    }
 }

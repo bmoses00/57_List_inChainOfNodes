@@ -9,6 +9,7 @@ public class UserOfNode {
         System.out.println( System.lineSeparator()
                           + "Test Node");
 
+
         // minimal Node, with no next node
         System.out.println( "minimal Node, with no next node");
         Node noNext=  new Node( new String( "mango")); // avoid interning
@@ -28,5 +29,14 @@ public class UserOfNode {
         Node twoArgCon = new Node( new String( "kiwi"), nextSet);
         System.out.println( twoArgCon
                           + System.lineSeparator());
+
+        Node threeNodes = new Node(new String("watermelon"), twoArgCon);
+
+        System.out.println(Node.findLength(threeNodes));
+
+
+        //Node headReference = new Node(1.2);
+
+
     }
 }
