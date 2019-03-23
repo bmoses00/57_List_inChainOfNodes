@@ -26,14 +26,6 @@ public class List_inChainOfNodes {
             return 1 + size(currentNode.getReferenceToNextNode());
     }
 
-    public int size() {
-        Node storage = headReference;
-        int counter = 1;
-        for (; headReference.getReferenceToNextNode()!= null; counter++)
-            headReference = headReference.getReferenceToNextNode();
-        return counter;
-    }
-
      /**
        @return a string representation of this list,
        format:
