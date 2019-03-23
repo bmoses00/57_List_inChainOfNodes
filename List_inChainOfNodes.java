@@ -16,7 +16,14 @@ public class List_inChainOfNodes {
       @return the number of elements in this list
      */
     public int size() {
-        return 0;
+        return size(headReference);
+    }
+
+    public int size(Node currentNode) {
+        if (currentNode.getReferenceToNextNode() == null)
+            return 1;
+        else
+            return 1 + size(currentNode.getReferenceToNextNode());
     }
 
      /**
@@ -25,8 +32,15 @@ public class List_inChainOfNodes {
            # elements [element0,element1,element2,]
       */
     public String toString() {
-        System.out.println("Wait, ");
-        return headReference.getReferenceToNextNode().toString();
+        return "[" + toString(headReference) + "]";
+    }
+
+    public String toString(Node currentNode) {
+        if (currentNode.getReferenceToNextNode() == null)
+            return currentNode.getCargoReference().toString() + ",";
+        else
+            return currentNode.getCargoReference().toString() + ","
+            + toString(currentNode.getReferenceToNextNode());
     }
 
     /**
@@ -34,12 +48,11 @@ public class List_inChainOfNodes {
       @return true, in keeping with conventions discussed
      */
      public boolean addAsHead( Object val) {
-         if (headReference.getReferenceToNextNode() == null)
-             headReference.setReferenceToNextNode(new Node(val));
+         if (headReference.getCargoReference() == null)
+             headReference = new Node(val);
          else {
-             Node temp = new Node(val);
-             temp.setReferenceToNextNode(headReference.getReferenceToNextNode());
-             headReference.setReferenceToNextNode(temp);
+             Node temp = new Node(val, headReference);
+             headReference = temp;
         }
          return true;
      }

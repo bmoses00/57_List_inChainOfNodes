@@ -28,7 +28,6 @@ public class Node {
       @return a string representation of this instance
      */
     public String toString() {
-        // System.out.println("I ran");
         String result =
             cargoReference.toString()  // polymorphically use appropriately toString!
           + " (id: " + super.toString() + ")";

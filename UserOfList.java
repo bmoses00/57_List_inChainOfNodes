@@ -5,9 +5,9 @@ public class UserOfList {
     public static void main( String[] args ) {
         List_inChainOfNodes list = new List_inChainOfNodes();
 
-        // System.out.println( "number of elements: " + list.size() );
+        System.out.println( "number of elements: " + list.size() );
 
-        // // the spec requests that toString include the size
+        // the spec requests that toString include the size
         // System.out.println( "empty list: " + list
                           // + System.lineSeparator());
 
@@ -22,7 +22,7 @@ public class UserOfList {
         int elemIndex;
         for( String elem : elements ) {
             list.addAsHead( elem);
-            // System.out.println( "number of elements: " + list.size() );
+            System.out.println( "number of elements: " + list.size() );
         }
         System.out.println(list);
     }
