@@ -12,6 +12,9 @@ public class Node {
     /**
       Construct an instance
      */
+    public Node() {
+    }
+
     public Node( Object cargoReference) {
         this.cargoReference = cargoReference;
     }
@@ -25,6 +28,7 @@ public class Node {
       @return a string representation of this instance
      */
     public String toString() {
+        // System.out.println("I ran");
         String result =
             cargoReference.toString()  // polymorphically use appropriately toString!
           + " (id: " + super.toString() + ")";
@@ -45,8 +49,7 @@ public class Node {
         this.referenceToNextNode = referenceToNextNode;
     }
 
-    public static int findLength(Node headNode) {
-        if (headNode.referenceToNextNode == null) return 0;
-        else return 1 + findLength(headNode.referenceToNextNode);
+    public Object getCargoReference() {
+        return cargoReference;
     }
 }

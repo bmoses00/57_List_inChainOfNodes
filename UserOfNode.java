@@ -30,12 +30,6 @@ public class UserOfNode {
         System.out.println( twoArgCon
                           + System.lineSeparator());
 
-        Node threeNodes = new Node(new String("watermelon"), twoArgCon);
-
-        System.out.println(Node.findLength(threeNodes));
-
-
-        //Node headReference = new Node(1.2);
 
 
     }
