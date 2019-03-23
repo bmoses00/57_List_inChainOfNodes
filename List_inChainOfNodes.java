@@ -15,24 +15,15 @@ public class List_inChainOfNodes {
     /**
       @return the number of elements in this list
      */
-    public int size() {
-        return size(headReference);
-    }
 
-    public int size(Node currentNode) {
-        if (currentNode.getReferenceToNextNode() == null)
-            return 1;
-        else
-            return 1 + size(currentNode.getReferenceToNextNode());
-    }
-
-    public int size() {
-        Node storage = headReference;
-        int counter = 1;
-        for (; headReference.getReferenceToNextNode()!= null; counter++)
-            headReference = headReference.getReferenceToNextNode();
-        return counter;
-    }
+     public int size() {
+         Node storage = headReference;
+         int counter = 1;
+         for (; headReference.getReferenceToNextNode()!= null; counter++)
+             headReference = headReference.getReferenceToNextNode();
+         headReference = storage;
+         return counter;
+     }
 
      /**
        @return a string representation of this list,
@@ -40,15 +31,14 @@ public class List_inChainOfNodes {
            # elements [element0,element1,element2,]
       */
     public String toString() {
-        return "[" + toString(headReference) + "]";
-    }
-
-    public String toString(Node currentNode) {
-        if (currentNode.getReferenceToNextNode() == null)
-            return currentNode.getCargoReference().toString() + ",";
-        else
-            return currentNode.getCargoReference().toString() + ","
-            + toString(currentNode.getReferenceToNextNode());
+        Node storage = headReference;
+        String output = headReference.getCargoReference().toString() + ",";
+        while (headReference.getReferenceToNextNode() != null) {
+            headReference = headReference.getReferenceToNextNode();
+            output += headReference.getCargoReference() + ",";
+        }
+        headReference = storage;
+        return "[" + output + "]";
     }
 
     /**
