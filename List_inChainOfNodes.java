@@ -50,26 +50,55 @@ public class List_inChainOfNodes {
          headReference = temp;
          return true;
      }
-
+     // not sure if the amount of code here can be reduced
      public boolean add(int index, Object val) {
+         if (index == 0) return addAsHead(val);
          return add(index, val, headReference);
      }
-
-     public boolean add(int index, Object val, Node headReference) {
-         if (index == 0) {
-
-           Node temp = new Node(val, headReference);
-           headReference = temp;
-           return true;
-       }
-       else return add(index - 1, val, headReference.getReferenceToNextNode());
+     public boolean add(int index, Object val, Node currentNode) {
+         if (index == 1) {
+             Node temp = new Node(val, currentNode.getReferenceToNextNode());
+             currentNode.setReferenceToNextNode(temp);
+             return true;
+         }
+         else
+             return add(index - 1, val, currentNode.getReferenceToNextNode());
      }
 
+     public Object get(int index) {
+         return get(index, headReference);
+     }
+     public Object get(int index, Node currentNode) {
+         if (index == 0) return currentNode.getCargoReference();
+         else return get(index - 1, currentNode.getReferenceToNextNode());
+     }
 
+     public boolean remove(int index) {
+         if (index == 0) {
+             headReference = headReference.getReferenceToNextNode();
+             return true;
+         }
+         return remove(index, headReference);
+     }
+     public boolean remove(int index, Node currentNode) {
+         if (index == 1) {
+             currentNode.setReferenceToNextNode((currentNode.getReferenceToNextNode()).getReferenceToNextNode());
+             return true;
+         }
+         else {
+             return remove(index - 1, currentNode.getReferenceToNextNode());
+         }
+     }
 
-
-
-
-
-
+     public boolean set(int index, Object val) {
+         return set(index, val, headReference);
+     }
+     public boolean set(int index, Object val, Node currentNode) {
+         if (index == 0) {
+             currentNode.setCargoReference(val);
+             return true;
+         }
+         else
+            return set(index - 1, val, currentNode.getReferenceToNextNode());
+     }
 }

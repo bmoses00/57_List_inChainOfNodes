@@ -27,7 +27,27 @@ public class UserOfList {
         System.out.println(list);
 
         list.add(3, "d");
+        System.out.println("after adding 'd' in middle: " + list);
 
-        System.out.println(list);
+        list.add(0, "a");
+        System.out.println("after adding 'a' at beginning: " + list);
+
+        list.add(6, "h");
+        System.out.println("after adding 'h' at end: " + list);
+
+        System.out.println("expecting a, received: " + list.get(0));
+        System.out.println("expecting u, received: " + list.get(3));
+        System.out.println("expecting h, received: " + list.get(6));
+
+        list.remove(0);
+        System.out.println("expecting S,t,u,d,y,h, received: " + list);
+        list.remove(5);
+        System.out.println("expecting S,t,u,d,y, received: " + list);
+        list.remove(3);
+        System.out.println("expecting S,t,u,y, received: " + list);
+        list.set(1, "a");
+        list.set(2, "d");
+        list.remove(3);
+        System.out.println("expecting S,a,d, received: " + list);
     }
 }

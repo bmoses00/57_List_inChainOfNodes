@@ -51,4 +51,9 @@ public class Node {
     public Object getCargoReference() {
         return cargoReference;
     }
+
+    public boolean setCargoReference(Object val) {
+        cargoReference = val;
+        return true;
+    }
 }
