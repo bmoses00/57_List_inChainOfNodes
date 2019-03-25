@@ -25,5 +25,9 @@ public class UserOfList {
             System.out.println( "number of elements: " + list.size() );
         }
         System.out.println(list);
+
+        list.add(3, "d");
+
+        System.out.println(list);
     }
 }

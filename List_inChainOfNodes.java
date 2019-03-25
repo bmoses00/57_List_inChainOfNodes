@@ -8,22 +8,21 @@ public class List_inChainOfNodes {
     /**
       Construct an empty list
      */
-    public List_inChainOfNodes() {
-        headReference = new Node();
-    }
 
     /**
       @return the number of elements in this list
      */
+    public int size() {
+        if (headReference == null) return 0;
+        return size(headReference);
+    }
 
-     public int size() {
-         Node storage = headReference;
-         int counter = 1;
-         for (; headReference.getReferenceToNextNode()!= null; counter++)
-             headReference = headReference.getReferenceToNextNode();
-         headReference = storage;
-         return counter;
-     }
+    public int size(Node currentNode) {
+        if (currentNode.getReferenceToNextNode() == null)
+            return 1;
+        else
+            return 1 + size(currentNode.getReferenceToNextNode());
+    }
 
      /**
        @return a string representation of this list,
@@ -31,14 +30,15 @@ public class List_inChainOfNodes {
            # elements [element0,element1,element2,]
       */
     public String toString() {
-        Node storage = headReference;
-        String output = headReference.getCargoReference().toString() + ",";
-        while (headReference.getReferenceToNextNode() != null) {
-            headReference = headReference.getReferenceToNextNode();
-            output += headReference.getCargoReference() + ",";
-        }
-        headReference = storage;
-        return "[" + output + "]";
+        return "[" + toString(headReference) + "]";
+    }
+
+    public String toString(Node currentNode) {
+        if (currentNode.getReferenceToNextNode() == null)
+            return currentNode.getCargoReference().toString() + ",";
+        else
+            return currentNode.getCargoReference().toString() + ","
+            + toString(currentNode.getReferenceToNextNode());
     }
 
     /**
@@ -46,12 +46,30 @@ public class List_inChainOfNodes {
       @return true, in keeping with conventions discussed
      */
      public boolean addAsHead( Object val) {
-         if (headReference.getCargoReference() == null)
-             headReference = new Node(val);
-         else {
-             Node temp = new Node(val, headReference);
-             headReference = temp;
-        }
+         Node temp = new Node(val, headReference);
+         headReference = temp;
          return true;
      }
+
+     public boolean add(int index, Object val) {
+         return add(index, val, headReference);
+     }
+
+     public boolean add(int index, Object val, Node headReference) {
+         if (index == 0) {
+
+           Node temp = new Node(val, headReference);
+           headReference = temp;
+           return true;
+       }
+       else return add(index - 1, val, headReference.getReferenceToNextNode());
+     }
+
+
+
+
+
+
+
+
 }
