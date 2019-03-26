@@ -1,14 +1,9 @@
 /**
   Represent a list, implemented in a chain of nodes
  */
-
+// *** FACTOR OUT RECURSION USING METHOD AT BOTTOM
 public class List_inChainOfNodes {
     private Node headReference;
-
-    /**
-      Construct an empty list
-     */
-
     /**
       @return the number of elements in this list
      */
@@ -53,7 +48,7 @@ public class List_inChainOfNodes {
      // not sure if the amount of code here can be reduced
      public boolean add(int index, Object val) {
          if (index == 0) return addAsHead(val);
-         return add(index, val, headReference);
+         else return add(index, val, headReference);
      }
      public boolean add(int index, Object val, Node currentNode) {
          if (index == 1) {
@@ -72,7 +67,7 @@ public class List_inChainOfNodes {
          if (index == 0) return currentNode.getCargoReference();
          else return get(index - 1, currentNode.getReferenceToNextNode());
      }
-
+     // *** RETURN REMOVED OBJECT
      public boolean remove(int index) {
          if (index == 0) {
              headReference = headReference.getReferenceToNextNode();
@@ -89,7 +84,7 @@ public class List_inChainOfNodes {
              return remove(index - 1, currentNode.getReferenceToNextNode());
          }
      }
-
+     // *** RETURN OLD VALUE
      public boolean set(int index, Object val) {
          return set(index, val, headReference);
      }
@@ -101,4 +96,8 @@ public class List_inChainOfNodes {
          else
             return set(index - 1, val, currentNode.getReferenceToNextNode());
      }
+
+     // public Node findCorrectNode(int index) {
+
+   // }
 }
