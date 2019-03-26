@@ -8,8 +8,8 @@ public class UserOfList {
         System.out.println( "number of elements: " + list.size() );
 
         // the spec requests that toString include the size
-        // System.out.println( "empty list: " + list
-                          // + System.lineSeparator());
+        System.out.println( "empty list: " + list
+                          + System.lineSeparator());
 
         /* Populate the list with elements.
            Create the test data in an array, for the programming
@@ -49,5 +49,9 @@ public class UserOfList {
         list.set(2, "d");
         list.remove(3);
         System.out.println("expecting S,a,d, received: " + list);
+
+        System.out.println(list.findCorrectNode(0).getCargoReference());
+        System.out.println(list.findCorrectNode(1).getCargoReference());
+        System.out.println(list.findCorrectNode(2).getCargoReference());
     }
 }
