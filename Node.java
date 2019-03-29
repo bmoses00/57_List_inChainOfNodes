@@ -15,11 +15,11 @@ public class Node {
     public Node() {
     }
 
-    public Node( Object cargoReference) {
+    public Node(Object cargoReference) {
         this.cargoReference = cargoReference;
     }
 
-    public Node( Object cargoReference, Node referenceToNextNode) {
+    public Node(Object cargoReference, Node referenceToNextNode) {
         this(cargoReference);
         this.referenceToNextNode = referenceToNextNode;
     }
@@ -52,8 +52,7 @@ public class Node {
         return cargoReference;
     }
 
-    public boolean setCargoReference(Object val) {
+    public void setCargoReference(Object val) {
         cargoReference = val;
-        return true;
     }
 }

@@ -22,17 +22,15 @@ public class List_inChainOfNodes {
       */
     public String toString() {
         if (headReference == null) return "[]";
-        else return size() + " [" + toString(headReference) + "]";
-    }
-    public String toString(Node currentNode) {
-        if (currentNode.getReferenceToNextNode() == null)
-            return currentNode.getCargoReference().toString() + ",";
-        else
-            return currentNode.getCargoReference().toString() + ","
-            + toString(currentNode.getReferenceToNextNode());
+
+        String output = size() + " elements: [";
+        Node node = headReference;
+        for (; node != null; node = node.getReferenceToNextNode())
+            output += node.getCargoReference() + ",";
+        return output + "]";
     }
 
-    public Node findCorrectNode(int index) {
+    public Node getNode(int index) {
         Node node = headReference;
         for (; index > 0; index--, node = node.getReferenceToNextNode()) {}
         return node;
@@ -48,26 +46,33 @@ public class List_inChainOfNodes {
      }
      public boolean add(int index, Object val) {
          if (index == 0) return addAsHead(val);
-         findCorrectNode(index - 1).setReferenceToNextNode(
-         new Node(val, findCorrectNode(index)));
+         Node node = getNode(index - 1); // index before where we're adding
+         node.setReferenceToNextNode(new Node(val, node.getReferenceToNextNode()));
          return true;
      }
 
      public Object get(int index) {
-         return findCorrectNode(index).getCargoReference();
+         return getNode(index).getCargoReference();
      }
 
      public Object remove(int index) {
-         Object oldValue = findCorrectNode(index).getCargoReference();
+         Object oldValue = getNode(index).getCargoReference();
          if (index == 0) headReference = headReference.getReferenceToNextNode();
-         else findCorrectNode(index - 1).setReferenceToNextNode(
-                                                    findCorrectNode(index + 1));
+         else getNode(index - 1).setReferenceToNextNode(getNode(index + 1));
+
+         // more efficient:
+         /*
+         Node node = getNode(index - 1);
+         if (index == 0) headReference = headReference.getReferenceToNextNode();
+         else node.setReferenceToNextNode(
+                         node.getReferenceToNextNode().getReferenceToNextNode());
+                         */
          return oldValue;
      }
 
      public Node set(int index, Object val) {
-         Node oldValue = findCorrectNode(index);
-         findCorrectNode(index).setCargoReference(val);
+         Node oldValue = getNode(index);
+         getNode(index).setCargoReference(val);
          return oldValue;
      }
 }

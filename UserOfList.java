@@ -50,8 +50,8 @@ public class UserOfList {
         list.remove(3);
         System.out.println("expecting S,a,d, received: " + list);
 
-        System.out.println(list.findCorrectNode(0).getCargoReference());
-        System.out.println(list.findCorrectNode(1).getCargoReference());
-        System.out.println(list.findCorrectNode(2).getCargoReference());
+        System.out.println(list.getNode(0).getCargoReference());
+        System.out.println(list.getNode(1).getCargoReference());
+        System.out.println(list.getNode(2).getCargoReference());
     }
 }
